@@ -1,11 +1,12 @@
 import "../App.css"
+import Inputform from "./inputform";
 
 const TodoApp = () => {
     return (
         <div className="todo">
             <h1>Todo app</h1>
-            <input type="text" placeholder="please input here" id="text" />
-            <button>add</button>
+            <Inputform/>
+        
             <ul></ul>
         </div>
 
