@@ -1,12 +1,17 @@
 import "../App.css"
 import { ITaskList } from "../interface/task";
 import TodoList from "./todoList";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 const Inputform = () => {
     const [inputText, setInputText] = useState<string>("")
     const [todoList, setTodoList] = useState<ITaskList[]>([])
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    useEffect(()=>{
+        inputRef.current && inputRef.current.focus()
+    },[])
     const handleAddTodo = () => {
         setTodoList([...todoList, {
             input: inputText,
@@ -26,7 +31,7 @@ const Inputform = () => {
     }
     return (
         <>
-            <input type="text" placeholder="please input here" id="text" value={inputText} onChange={event => setInputText(event.target.value)} />
+            <input ref={inputRef} type="text" placeholder="please input here" id="text" value={inputText} onChange={event => setInputText(event.target.value)} />
             <button onClick={handleAddTodo} >add</button>
             <TodoList input={todoList} updateCompleted={updateCompleted} />
         </>
